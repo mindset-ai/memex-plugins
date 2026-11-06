@@ -1,0 +1,17 @@
+{
+  "name": "memex",
+  "owner": {
+    "name": "Mindset AI",
+    "url": "https://memex.ai"
+  },
+  "metadata": {
+    "description": "Memex plugins for coding agents: light-touch spec-checkout hooks. The Memex MCP server is installed by `npx -y memex-ai install`, so a single browser sign-in serves both the MCP and the checkout key."
+  },
+  "plugins": [
+    {
+      "name": "memex-checkout",
+      "source": "./plugins/memex-checkout",
+      "description": "Binds your coding thread to a Memex Spec and records in-flow edits against it (claim-gated, privacy-first). Hooks-only and trivially uninstallable; the Memex MCP is installed by `npx -y memex-ai install` (one sign-in serves both, no duplicate toolset). Sends only changed file paths + the claimed spec; never source code or prompts."
+    }
+  ]
+}
