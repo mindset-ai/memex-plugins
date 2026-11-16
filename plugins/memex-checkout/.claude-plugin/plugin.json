@@ -1,6 +1,17 @@
 {
   "name": "memex-checkout",
-  "version": "0.3.0",
-  "description": "Memex spec-checkout — binds your coding thread to a Spec and records in-flow edits against it (claim-gated, privacy-first). Non-blocking, opt-in, uninstallable any time. Sends only changed file paths + the claimed spec; never source code or prompts. Hooks-only: the Memex MCP is planted by `npx memex-ai install` (spec-430 dec-2) so a single sign-in serves both, with no duplicate MCP toolset.",
-  "author": { "name": "Mindset AI", "url": "https://memex.ai" }
+  "version": "0.4.1",
+  "description": "Memex for Claude Code. Connects Claude to your team's Specs, decisions and tasks in Memex (sign in once with OAuth), adds skills for starting a Spec and building one, and links each file Claude edits to the Spec it is working on. The link sends only changed file paths and the Spec; never source code or prompts.",
+  "author": {
+    "name": "Mindset AI",
+    "url": "https://www.memex.ai"
+  },
+  "homepage": "https://www.memex.ai/docs",
+  "repository": "https://github.com/mindset-ai/memex-plugins",
+  "keywords": [
+    "memex",
+    "specs",
+    "planning",
+    "mcp"
+  ]
 }

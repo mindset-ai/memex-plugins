@@ -279,12 +279,20 @@ function toolCallFailed(payload) {
 // The caller keys the marker on payload.session_id (the conversation UID).
 export function decideMarkerAction(payload) {
   const toolName = typeof payload?.tool_name === "string" ? payload.tool_name : "";
-  // Strip the MCP server prefix down to the bare tool name. The Memex server is
-  // exposed as `mcp__memex__<tool>` when configured directly, but as
-  // `mcp__plugin_<plugin>_memex__<tool>` when the SAME server ships inside this
-  // plugin (Claude Code namespaces a plugin's MCP servers). Accept both, or the
-  // gate silently no-ops on every real plugin install.
-  const bare = toolName.replace(/^mcp__(?:plugin_[a-z0-9-]+_)?memex__/, "");
+  // Strip the MCP server prefix down to the bare tool name. The prod Memex server is
+  // exposed as `mcp__memex__<tool>` when configured directly, as
+  // `mcp__plugin_<plugin>_memex__<tool>` when it ships inside this plugin (Claude
+  // Code namespaces a plugin's MCP servers), and as `mcp__claude_ai_Memex__<tool>`
+  // when it comes from the claude.ai connector. Accept all three, or the gate
+  // silently no-ops for that install route.
+  //
+  // Anything else is not this machine's Memex and never arms the marker, even when
+  // its response carries a checkout signal: the edit hook phones home to the API
+  // base in ~/.memex/checkout.json, so a claim made through another server (for
+  // example a `Memex_int` connector) would be recorded against the wrong Memex.
+  const prefix = /^mcp__(?:memex|plugin_[a-z0-9-]+_memex|claude_ai_[Mm]emex)__/;
+  if (!prefix.test(toolName)) return { action: "skip" };
+  const bare = toolName.replace(prefix, "");
   const signal = checkoutSignal(payload?.tool_response);
   if (signal) {
     if (toolCallFailed(payload)) return { action: "skip" };

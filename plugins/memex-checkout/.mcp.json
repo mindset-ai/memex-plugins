@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "memex": {
+      "type": "http",
+      "url": "https://memex.ai/mcp"
+    }
+  }
+}

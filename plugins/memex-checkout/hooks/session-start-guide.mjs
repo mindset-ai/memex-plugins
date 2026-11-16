@@ -4,7 +4,9 @@
 //
 //   1. spec-430 dec-4 — self-heal. When the checkout key isn't set up on this
 //      machine (no `hook_key` in ~/.memex/checkout.json and no env override), OFFER
-//      to finish setup. Emitted ONLY when not set up; silent once set up.
+//      to finish setup. Emitted ONLY when not set up; silent once set up. Since the
+//      plugin bundles the MCP (spec-626 dec-1), the offer is `checkout-setup` (the
+//      key only), never `install`, which would plant a second Memex MCP entry.
 //   2. spec-300 dec-26 — skills attunement (ac-69). Prime Claude Code to reach for
 //      Memex Skills across the user's Memexes when a named skill isn't one of its own
 //      local skills. Emitted EVERY session — it is gated on nothing (the Memex MCP
@@ -49,8 +51,10 @@ const SETUP_STEER = [
   "Memex spec-checkout is installed but not fully set up on this machine: no checkout",
   "key is present, so in-flow edits to a claimed Spec won't be recorded yet. If the",
   "user wants Memex spec-checkout working, OFFER (don't nag) to finish setup by running",
-  "`npx -y memex-ai install` — one browser sign-in that plants the MCP token and mints",
-  "the user checkout key. If they decline, stay silent for the rest of the session.",
+  "`npx -y memex-ai checkout-setup` — one browser sign-in that mints the user checkout",
+  "key and nothing else. The Memex MCP server already comes from this plugin or the",
+  "claude.ai connector, so don't suggest the full Memex installer, which would add a",
+  "second Memex server. If they decline, stay silent for the rest of the session.",
 ].join(" ");
 
 // spec-300 dec-26 (ac-69) — mirrors the MCP server's `## Skills` instruction so the
