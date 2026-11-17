@@ -1,0 +1,10 @@
+{
+  "name": "memex",
+  "version": "1.0.0",
+  "description": "Memex for Claude. Gives Claude your team's Specs, decisions and tasks in Memex, with skills for planning a new Spec and building one. Connects to the Memex MCP server at https://memex.ai/mcp (sign in once with OAuth), the same server as the Memex connector.",
+  "author": { "name": "Mindset AI", "url": "https://www.memex.ai" },
+  "homepage": "https://www.memex.ai/docs",
+  "repository": "https://github.com/mindset-ai/memex-plugins",
+  "privacyPolicyUrl": "https://www.memex.ai/legal/privacy/",
+  "keywords": ["memex", "specs", "planning", "mcp"]
+}
