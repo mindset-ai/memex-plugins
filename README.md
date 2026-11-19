@@ -33,12 +33,16 @@ your computer.
 
 Uninstall at any time with `claude plugin uninstall memex@memex`.
 
-## memex-checkout
+## Coming from memex-checkout?
 
-The earlier name of the same plugin, with the same content. It used to add
-spec-checkout hooks; they were removed so the plugin can be listed in Anthropic's
-directory. Existing installs keep updating under this name; new installs should
-use `memex`.
+`memex-checkout` was the earlier name of this plugin and has been retired. Switch
+once (the content is the same):
+
+```
+claude plugin uninstall memex-checkout@memex
+claude plugin marketplace update memex
+claude plugin install memex@memex
+```
 
 ## License
 
